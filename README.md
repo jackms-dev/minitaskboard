@@ -41,29 +41,29 @@ node Board.js
 
 ## **Architecture Overview**
 
-### "Items"
+### Items
 
 Items are the smallest unit of data on a task.
 
-- `StatusItem.js` – Individual status item assigned a name and a group
-- `GroupItem.js` – Individual group item, used to organize statuses
-- `TagItem.js` – Individual tag item, used for more granular categorization of tasks
+- `StatusItem.js` – Individual status item assigned a name and a group.
+- `GroupItem.js` – Individual group item, used to organize statuses.
+- `TagItem.js` – Individual tag item, used for more granular categorization of tasks.
 
-### "Collections"
+### Collections
 
 Collections are groupings of items with methods to retrieve, add, and remove data.
 
-- `StatusInstance.js` – Collection of status objects returned from statusItem()
-- `GroupCollection.js` – Collection of group objects returned from groupItem()
-- `TagCollection.js` – Collection of tag objects returned from tagItem()
+- `StatusInstance.js` – Collection of status objects returned from `statusItem()`.
+- `GroupCollection.js` – Collection of group objects returned from `groupItem()`.
+- `TagCollection.js` – Collection of tag objects returned from `tagItem()`.
 
-### "Instances"
+### Instances
 
 Instances are individually assigned to tasks and include get/set/clear methods. This allows the task to pull an available object (eg. status) from a collection, loosely representing its "state".
 
-- `StatusInstance.js` - A status-group pairing used to manage a task's status, eg. "To Do" → "In Progress"
+- `StatusInstance.js` - A status-group pairing used to manage a task's status, eg. `"To Do"` → `"In Progress"`.
 - `TagInstance.js` – Manages tags assigned to the object, includes flexibility for bulk assignment.
 
-### "Utilities"
+### Utilities
 
-- `normalizeToArray.js` – Helper function to convert objects into array for more flexible "add" functions for statuses, groups, and tags
+- `normalizeToArray.js` – Helper function to convert objects into array for more flexible "add" functions for statuses, groups, and tags.
