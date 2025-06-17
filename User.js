@@ -1,50 +1,54 @@
-import {
-  isValidType,
-  isValidString,
-  normalizeToArray,
-  typeCollection,
-} from "./Helpers.js";
+import { isValidString, normalizeToArray } from "./Helpers.js";
 
-// Individual user object
+// Individual user item
 export function userItem(name, title, team) {
   const type = "UserItem";
-  // Consider adding some boolean property, eg. isAdmin
   return {
     type: type,
     name: isValidString(name) ? name : null,
     title: isValidString(title) ? title : null,
     team: team,
     isValid() {
-      return isValidString(this.name) && this.team && this.team?.isValid();
+      return (
+        this.name &&
+        this.team &&
+        this.team?.type === "TeamItem" &&
+        this.team?.isValid()
+      );
     },
   };
 }
 
-// Collection of user items
-export function userCollection(arr = []) {
-  let users = typeCollection(arr, (obj) =>
-    isValidType(obj, "UserItem", () => obj?.isValid())
-  );
+// Tracks the users assigned to an individual task item
+// Expects a typeCollection for teams and users
+export function assigneeInstance(users, teams, arr = []) {
+  let assignee = new Set();
+  arr.forEach((item) => {
+    if (users?.hasItem(item) && teams.hasItem(item?.team)) assignee.add(item);
+  });
   return {
-    type: "TeamItem",
-    users: users,
-    addUser(obj) {
-      normalizeToArray(obj).forEach((item) => {
-        if (isValidType(item, "UserItem", () => item?.isValid()))
-          this.users.add(item);
+    getAssignee() {
+      return [...assignee].map((item) => item?.name);
+    },
+    hasAssignee(val) {
+      return [...assignee].find((item) => item === val);
+    },
+    setAssignee(val) {
+      normalizeToArray(val).forEach((item) => {
+        if (users?.hasItem(item)) assignee.add(item);
       });
     },
-    deleteUser(obj) {},
-    hasUser(obj) {},
-    getUser(obj) {},
-    getAllUsers() {},
+    removeAssignee(val) {
+      normalizeToArray(val).forEach((item) => assignee.delete(item));
+    },
+    clearAssignee() {
+      assignee.clear();
+    },
+    listAllUsers() {
+      return users?.getAllItems();
+    },
+    listAllTeams() {
+      return teams?.getAllItems();
+    },
   };
 }
-
-// export function checkValidUserItem(obj) {
-//   return (
-//     obj?.type === "UserItem" &&
-//     typeof obj.isValidUserItem === "function" &&
-//     obj.isValidUserItem()
-//   );
-// }

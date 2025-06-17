@@ -1,16 +1,12 @@
-import {
-  isValidType,
-  isValidString,
-  normalizeToArray,
-  typeCollection,
-} from "./Helpers.js";
+import { isValidString, normalizeToArray } from "./Helpers.js";
 
 export class Task {
-  constructor(title, statusInstance, tagsInstance) {
+  constructor(title, statusInstance, tagsInstance, assigneeInstance) {
     this.title = isValidString(title) ? title : "New Task";
     this.description = null;
-    this.status = statusInstance;
-    this.tags = tagsInstance;
+    this.status = statusInstance ?? null;
+    this.tags = tagsInstance ?? null;
+    this.assignee = assigneeInstance ?? null;
   }
   getTitle() {
     return this.title;
@@ -25,52 +21,33 @@ export class Task {
     if (isValidString(val)) this.description = val;
   }
   getStatus() {
-    return this.status.getStatus();
+    return this.status?.getStatus();
   }
   setStatus(val) {
-    this.status.setStatus(val);
+    this.status?.setStatus(val);
   }
   clearStatus() {
-    this.status.clearStatus();
+    this.status?.clearStatus();
+  }
+  getGroup() {
+    return this.status?.getGroup();
   }
   getTags() {
-    return this.tags.getTags();
+    return this.tags?.getTags();
   }
   setTags(val) {
-    this.tags.setTags(val);
+    this.tags?.setTags(val);
   }
   clearTags() {
-    this.tags.clearTags();
+    this.tags?.clearTags();
   }
-}
-
-export function taskCollection(arr = []) {
-  let tasks = new Set();
-
-  // Can you use typeCollection here?
-  arr.filter((item) => item instanceof Task).forEach((item) => tasks.add(item));
-
-  return {
-    tasks: tasks,
-    addTask(obj) {
-      normalizeToArray(obj).forEach((item) => {
-        if (item instanceof Task) this.tasks.add(item);
-      });
-    },
-    deleteTask(obj) {
-      normalizeToArray(obj).forEach((item) => this.tasks.delete(item));
-    },
-    hasTask(obj) {
-      return this.tasks.has(obj);
-    },
-    getTask(task) {
-      return [...this.tasks].find((item) => task === item);
-    },
-    clearTasks() {
-      this.tasks.clear();
-    },
-    listTasks() {
-      return [...this.tasks];
-    },
-  };
+  getAssignee() {
+    return this.assignee?.getAssignee();
+  }
+  setAssignee(val) {
+    this.assignee?.setAssignee(val);
+  }
+  clearAssignee() {
+    this.assignee?.clear();
+  }
 }
