@@ -1,0 +1,71 @@
+@import url(./normalize.css);
+@import url(./base.css);
+@import url(./layout.css);
+
+/* Styles for individual, reusable components */
+
+.task-card {
+  padding: var(--size-px-16);
+  border-radius: var(--size-px-4);
+  background-color: var(--gray-neg-3);
+  border: 1px solid var(--gray-neg-2);
+}
+
+/* .task-card__title {} */
+
+/* .task-card__description {} */
+
+.task-card__status-wrap {
+  display: inline-flex;
+  flex-direction: row;
+  gap: var(--size-px-4);
+  padding-top: var(--size-px-2);
+  padding-bottom: var(--size-px-2);
+  padding-right: var(--size-px-6);
+  padding-left: var(--size-px-6);
+  border-radius: var(--size-px-32);
+  color: var(--gray-pos-1);
+  background-color: var(--gray-neg-2);
+}
+
+.task-card__status-icon-wrap {
+  display: inline-flex;
+  padding-top: var(--size-px-2);
+  padding-bottom: var(--size-px-2);
+}
+
+.task-card__status-icon {
+  display: inline;
+  width: var(--size-px-12);
+  height: var(--size-px-12);
+}
+
+.task-card__status-label {
+  /* font-weight: 400; */
+  text-transform: capitalize;
+}
+
+/* .task-card__tags-group {} */
+
+.task-card__tag-wrap {
+  display: inline-flex;
+  padding-top: var(--size-px-2);
+  padding-bottom: var(--size-px-2);
+  padding-right: var(--size-px-6);
+  padding-left: var(--size-px-6);
+  border-radius: var(--size-px-4);
+  color: var(--gray-pos-1);
+  background-color: var(--gray-neg-2);
+}
+
+.task-card__tag-label {
+  /* font-family: var(--mono); */
+  /* font-weight: 600; */
+  /* text-transform: uppercase; */
+}
+
+/* .task-card__assignee-wrap {} */
+
+/* .task-card__assignee-label {} */
+
+/* .task-card__assignee- {} */

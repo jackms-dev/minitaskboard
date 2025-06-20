@@ -1,0 +1,237 @@
+@import url(./normalize.css);
+
+/* Global design foundations */
+
+:root {
+  /* Colors */
+
+  /* Black and white */
+  --black: black;
+  --white: white;
+
+  /* Gray (neutrals) */
+  --gray-0: #81848f;
+  --gray-neg-1: #b8babf;
+  --gray-neg-2: #e1e3e6;
+  --gray-neg-3: #f0f0f3;
+  --gray-pos-1: #4f525b;
+  --gray-pos-2: #2c2e34;
+  --gray-pos-3: #1c1d1e;
+
+  /* Blue */
+  --blue-0: #7b91b1;
+  --blue-neg-1: #bdc8d8;
+  --blue-neg-2: #e6eaf0;
+  --blue-pos-1: #3c5377;
+  --blue-pos-2: #1d2a3b;
+
+  /* Brown */
+  --brown-0: #9a8f7b;
+  --brown-neg-1: #ccc7be;
+  --brown-neg-2: #ebe9e5;
+  --brown-pos-1: #6d6556;
+  --brown-pos-2: #3e3a31;
+
+  /* Green */
+  --green-0: #879988;
+  --green-neg-1: #c3ccc3;
+  --green-neg-2: #e8ece8;
+  --green-pos-1: #4c5f4d;
+  --green-pos-2: #263027;
+
+  /* Orange */
+  --orange-0: #d8a175;
+  --orange-neg-1: #ebd0ba;
+  --orange-neg-2: #f8ede5;
+  --orange-pos-1: #a56f43;
+  --orange-pos-2: #533821;
+
+  /* Pink */
+  --pink-0: #c88f98;
+  --pink-neg-1: #e3c7cb;
+  --pink-neg-2: #f5eaeb;
+  --pink-pos-1: #955c65;
+  --pink-pos-2: #4b2e32;
+
+  /* Purple */
+  --purple-0: #9d95ae;
+  --purple-neg-1: #cecad7;
+  --purple-neg-2: #ecebf0;
+  --purple-pos-1: #685e79;
+  --purple-pos-2: #342f3d;
+
+  /* Red */
+  --red-0: #e3847a;
+  --red-neg-1: #f1c1bc;
+  --red-neg-2: #f9e4e2;
+  --red-pos-1: #ae5149;
+  --red-pos-2: #572824;
+
+  /* Teal */
+  --teal-0: #6d9fa7;
+  --teal-neg-1: #b6cfd3;
+  --teal-neg-2: #e3edee;
+  --teal-pos-1: #396074;
+  --teal-pos-2: #1c2f3a;
+
+  /* Yellow */
+  --yellow-0: #ddc575;
+  --yellow-neg-1: #eee2ba;
+  --yellow-neg-2: #f9f4e5;
+  --yellow-pos-1: #a99345;
+  --yellow-pos-2: #554922;
+
+  /* Utility colors */
+  --semantic-danger: #eb4e3d;
+  --semantic-focus: #3478f6;
+  --semantic-success: #65c466;
+  --semantic-utility: #9747ff;
+  --semantic-warning: #f7ce46;
+  --transparent: rgba(255, 255, 255, 0);
+
+  /* Spacing and sizing */
+
+  /* Pixel values */
+
+  --size-px-0: 0px;
+  --size-px-1: 1px;
+  --size-px-2: 2px;
+  --size-px-4: 4px;
+  --size-px-6: 6px;
+  --size-px-8: 8px;
+  --size-px-12: 12px;
+  --size-px-16: 16px;
+  --size-px-20: 20px;
+  --size-px-24: 24px;
+  --size-px-28: 28px;
+  --size-px-32: 32px;
+  --size-px-36: 36px;
+  --size-px-40: 40px;
+  --size-px-44: 44px;
+  --size-px-48: 48px;
+  --size-px-56: 56px;
+  --size-px-64: 64px;
+  --size-px-72: 72px;
+  --size-px-80: 80px;
+  --size-px-88: 88px;
+  --size-px-96: 96px;
+  --size-px-104: 104px;
+  --size-px-120: 120px;
+  --size-px-180: 180px;
+  --size-px-240: 240px;
+  --size-px-320: 320px;
+  --size-px-360: 360px;
+  --size-px-400: 400px;
+  --size-px-480: 480px;
+  --size-px-640: 640px;
+  --size-px-960: 960px;
+
+  /* Typography */
+
+  --sans: "IBM Plex Sans", "Helvetica", sans-serif, system-ui;
+  --serif: "IBM Plex Serif", "Times New Roman", serif, system-ui;
+  --mono: "IBM Plex Mono", "Courier", monospace, system-ui;
+}
+
+/* Typographic styles */
+
+h1 {
+  font-size: var(--size-px-96);
+  line-height: var(--size-px-108);
+}
+
+h2 {
+  font-size: var(--size-px-56);
+  line-height: var(--size-px-72);
+}
+
+h3 {
+  font-size: var(--size-px-36);
+  line-height: var(--size-px-48);
+}
+
+h4 {
+  font-size: var(--size-px-28);
+  line-height: var(--size-px-36);
+}
+
+h5 {
+  font-size: var(--size-px-20);
+  line-height: var(--size-px-28);
+}
+
+h6 {
+  font-size: var(--size-px-12);
+  line-height: var(--size-px-16);
+}
+
+p {
+  font-size: var(--size-px-16);
+  line-height: var(--size-px-24);
+}
+
+.label {
+  font-size: var(--size-px-12);
+  line-height: var(--size-px-16);
+  letter-spacing: 0.04em;
+}
+
+.footnote {
+  font-size: var(--size-px-8);
+  line-height: var(--size-px-12);
+  letter-spacing: 0.04em;
+  font-weight: 500;
+}
+
+.sans {
+  font-family: var(--sans);
+}
+
+.serif {
+  font-family: var(--serif);
+}
+
+.mono {
+  font-family: var(--mono);
+}
+
+/* Element defaults */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  font-family: var(--sans);
+}
+
+body {
+  margin: 0;
+  background-color: var(--white);
+  color: var(--gray-pos-2);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+a,
+strong,
+em,
+small,
+label,
+li,
+dt,
+dd,
+blockquote,
+cite,
+input[type="text"],
+textarea {
+  font-family: inherit;
+  color: inherit;
+  margin-top: 0;
+  margin-bottom: 0;
+}
