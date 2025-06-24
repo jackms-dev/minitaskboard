@@ -1,0 +1,7 @@
+{
+    "window.zoomLevel": 0,
+    "window.zoomPerWindow": false,
+    "terminal.integrated.mouseWheelZoom": true,
+    "editor.fontSize": 12,
+    "editor.fontFamily": "'SF Mono', Menlo, Monaco, 'Courier New', monospace"
+}

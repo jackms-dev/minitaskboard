@@ -1,0 +1,17 @@
+{
+  "name": "mini-taskboard",
+  "version": "1.0.0",
+  "description": "`WORK IN PROGRESS`",
+  "type": "module",
+  "main": "MiniTaskboard.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@csstools/normalize.css": "^12.1.1",
+    "lucide": "^0.518.0"
+  }
+}

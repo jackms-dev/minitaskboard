@@ -28,7 +28,7 @@ export function assigneeInstance(users, teams, arr = []) {
   });
   return {
     getAssignee() {
-      return [...assignee].map((item) => item?.name);
+      return [...assignee];
     },
     hasAssignee(val) {
       return [...assignee].find((item) => item === val);

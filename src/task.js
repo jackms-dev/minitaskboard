@@ -50,13 +50,22 @@ export class Task {
   clearAssignee() {
     this.assignee?.clear();
   }
-  toJSON() {
+  toObj() {
     return {
       title: this.title,
-      description: this.description,
-      status: this.status.getStatus(),
-      tags: this.tags.getTags(),
-      assignee: this.assignee.getAssignee(),
+      description: this.description ? this.description : null,
+      status: this.status
+        ? {
+            name: this.status.getStatus()?.name,
+            group: {
+              name: this.status.getGroup()?.name,
+              icon: this.status.getGroup()?.icon,
+            },
+            color: this.status.getStatus()?.color,
+          }
+        : null,
+      tags: this.tags ? this.tags.getTags() : null,
+      assignee: this.assignee ? this.assignee.getAssignee() : null,
     };
   }
 }

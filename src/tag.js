@@ -1,11 +1,12 @@
 import { isValidString, normalizeToArray } from "./helpers.js";
 
 // Individual tag item
-export function tagItem(label) {
+export function tagItem(label, color) {
   const type = "TagItem";
   return {
     type: type,
     label: isValidString(label) ? label : null,
+    color: isValidString(color) ? color : null,
     isValid() {
       return isValidString(this.label);
     },
@@ -22,7 +23,7 @@ export function tagInstance(tagCollection, arr = []) {
   });
   return {
     getTags() {
-      return [...tags].map((item) => item?.label);
+      return [...tags];
     },
     setTags(obj) {
       normalizeToArray(obj).forEach((item) => {

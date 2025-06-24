@@ -1,12 +1,13 @@
 import { isValidString } from "./helpers.js";
 
 // Individual status item
-export function statusItem(name, group) {
+export function statusItem(name, group, color) {
   const type = "StatusItem";
   return {
     type: type,
     name: isValidString(name) ? name : null,
     group: group,
+    color: isValidString(color) ? color : null,
     isValid() {
       return Boolean(
         this.name &&
@@ -30,7 +31,7 @@ export function statusInstance(groups, statuses, currentStatus) {
     status = currentStatus;
   return {
     getStatus() {
-      return status?.name;
+      return status;
     },
     setStatus(val) {
       // Consider throwing an error for easier debugging
@@ -40,7 +41,13 @@ export function statusInstance(groups, statuses, currentStatus) {
       status = null;
     },
     getGroup() {
-      return status?.group?.name;
+      return status?.group;
+    },
+    getColor() {
+      return status?.color;
+    },
+    setColor(val) {
+      if (isValidString(val)) status?.color === val;
     },
     listAllStatuses() {
       return statuses?.getAllItems();

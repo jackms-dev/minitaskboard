@@ -3,7 +3,9 @@
 /* Global design foundations */
 
 :root {
-  /* Colors */
+  /* Primitive colors */
+
+  /* Add light/dark mode variables later: https://dev.to/ananyaneogi/create-a-dark-light-mode-switch-with-css-variables-34l8 */
 
   /* Black and white */
   --black: black;
@@ -234,4 +236,13 @@ textarea {
   color: inherit;
   margin-top: 0;
   margin-bottom: 0;
+}
+
+/* DELETE THIS */
+
+#app {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-px-16);
+  padding: var(--size-px-16);
 }
