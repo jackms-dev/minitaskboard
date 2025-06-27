@@ -1,4 +1,3 @@
-import { Task } from "./task.js";
 import {
   statusItem,
   statusInstance,
@@ -10,6 +9,7 @@ import {
   teamItem,
   typeCollection,
   board,
+  Task,
 } from "./taskObject.js";
 import {
   Circle,
@@ -105,19 +105,19 @@ let userCollection = typeCollection("Users", "UserItem", [
 ]);
 
 // Task items
-const task1 = new Task(
+export const task1 = new Task(
   "Task 1",
   statusInstance(groupCollection, statusCollection, status1),
   tagInstance(tagCollection, [tag1, tag3, tag8]),
   assigneeInstance(userCollection, teamCollection, [user1, user3])
 );
-const task2 = new Task(
+export const task2 = new Task(
   "Task 2",
   statusInstance(groupCollection, statusCollection, status3),
   tagInstance(tagCollection, [tag7, tag4]),
   assigneeInstance(userCollection, teamCollection, [user2])
 );
-const task3 = new Task(
+export const task3 = new Task(
   "Task 3",
   statusInstance(groupCollection, statusCollection, status5),
   tagInstance(tagCollection, [tag5, tag6, tag9]),
@@ -135,5 +135,3 @@ export const taskBoard = board(
   teamCollection,
   userCollection
 );
-
-console.log(group1);

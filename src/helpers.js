@@ -11,3 +11,22 @@ export function normalizeToArray(val) {
 export function isValidString(str) {
   return Boolean(str && typeof str === "string" && str.length > 0);
 }
+
+// Returns an array of valid strings
+export function cssClasses(classes = []) {
+  return normalizeToArray(classes).filter((item) => isValidString(item));
+}
+
+// Capitalize first letter
+export function capitalizeString(str) {
+  if (isValidString(str)) {
+    let val = str
+      .split(" ")
+      .map((word) => {
+        let char = word.at(0).toUpperCase();
+        return word.replace(word[0], char);
+      })
+      .join(" ");
+    return val;
+  }
+}

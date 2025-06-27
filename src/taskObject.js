@@ -1,5 +1,4 @@
 import { isValidString, normalizeToArray } from "./helpers.js";
-import { Task } from "./task.js";
 
 // Takes a source (object), type (string), and validation function to
 // check if an item matches the type and passes its own validation
@@ -35,9 +34,9 @@ export function initializeCollection(source, valFn) {
 
 // Generates the type collection and includes methods
 // to add, delete, get, etc. items
-export function typeCollection(label = null, type, arr = []) {
+export function typeCollection(name = null, type, arr = []) {
   return {
-    label: isValidString(label) ? label : null,
+    name: isValidString(name) ? name : null,
     type: isValidString(type) ? type : null,
     // Overrelying on the object to declare its type correctly
     collection: initializeCollection(arr, (obj) =>
@@ -183,6 +182,9 @@ export function assigneeInstance(users, teams, arr = []) {
       return [...assignee];
     },
     hasAssignee(val) {
+      return assignee.has(val);
+    },
+    findAssignee(val) {
       return [...assignee].find((item) => item === val);
     },
     setAssignee(val) {
@@ -206,14 +208,14 @@ export function assigneeInstance(users, teams, arr = []) {
 }
 
 // Individual tag item
-export function tagItem(label, color) {
+export function tagItem(name, color) {
   const type = "TagItem";
   return {
     type: type,
-    label: isValidString(label) ? label : null,
+    name: isValidString(name) ? name : null,
     color: isValidString(color) ? color : null,
     isValid() {
-      return isValidString(this.label);
+      return isValidString(this.name);
     },
   };
 }
@@ -230,9 +232,15 @@ export function tagInstance(tagCollection, arr = []) {
     getTags() {
       return [...tags];
     },
-    setTags(obj) {
-      normalizeToArray(obj).forEach((item) => {
-        if (tagCollection?.hasTag(item)) {
+    hasTags(val) {
+      return tags.has(val);
+    },
+    findTag(val) {
+      return [...tags].find((item) => item === val);
+    },
+    setTags(val) {
+      normalizeToArray(val).forEach((item) => {
+        if (tagCollection?.hasItem(item)) {
           tags.add(item);
         }
         if (
@@ -245,6 +253,9 @@ export function tagInstance(tagCollection, arr = []) {
         }
       });
     },
+    removeTags(val) {
+      normalizeToArray(val).forEach((item) => tags.delete(item));
+    },
     clearTags() {
       tags.clear();
     },
@@ -255,6 +266,7 @@ export function tagInstance(tagCollection, arr = []) {
 }
 
 // Orchestrates all logic between collections
+// groups, statuses, tags, teams, and users are typeCollections
 export function board(arrTasks = [], groups, statuses, tags, teams, users) {
   let tasks = new Set();
   arrTasks
@@ -290,10 +302,78 @@ export function board(arrTasks = [], groups, statuses, tags, teams, users) {
       this.tasks.clear();
     },
     summary() {
-      return [...this.tasks].reduce((acc, val) => {
-        acc.push(val.toJSON());
-        return acc;
-      }, []);
+      return [...this.tasks];
     },
   };
+}
+
+export class Task {
+  constructor(title, statusInstance, tagsInstance, assigneeInstance) {
+    this.title = isValidString(title) ? title : "New Task";
+    this.description = null;
+    this.status = statusInstance ?? null;
+    this.tags = tagsInstance ?? null;
+    this.assignee = assigneeInstance ?? null;
+  }
+  getTitle() {
+    return this.title;
+  }
+  setTitle(val) {
+    if (isValidString(val)) this.title = val;
+  }
+  getDescription() {
+    return this.description;
+  }
+  setDescription(val) {
+    if (isValidString(val)) this.description = val;
+  }
+  getStatus() {
+    return this.status?.getStatus();
+  }
+  setStatus(val) {
+    this.status?.setStatus(val);
+  }
+  clearStatus() {
+    this.status?.clearStatus();
+  }
+  getGroup() {
+    return this.status?.getGroup();
+  }
+  getTags() {
+    return this.tags?.getTags();
+  }
+  setTags(val) {
+    this.tags?.setTags(val);
+    console.log(this.tags);
+  }
+  clearTags() {
+    this.tags?.clearTags();
+  }
+  getAssignee() {
+    return this.assignee?.getAssignee();
+  }
+  setAssignee(val) {
+    this.assignee?.setAssignee(val);
+  }
+  clearAssignee() {
+    this.assignee?.clear();
+  }
+  toObj() {
+    return {
+      title: this.title,
+      description: this.description ? this.description : null,
+      status: this.status
+        ? {
+            name: this.status.getStatus()?.name,
+            group: {
+              name: this.status.getGroup()?.name,
+              icon: this.status.getGroup()?.icon,
+            },
+            color: this.status.getStatus()?.color,
+          }
+        : null,
+      tags: this.tags ? this.tags.getTags() : null,
+      assignee: this.assignee ? this.assignee.getAssignee() : null,
+    };
+  }
 }
