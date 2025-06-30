@@ -308,7 +308,9 @@ export function board(arrTasks = [], groups, statuses, tags, teams, users) {
 }
 
 export class Task {
+  #privateId = crypto.randomUUID();
   constructor(title, statusInstance, tagsInstance, assigneeInstance) {
+    this.id = this.#privateId;
     this.title = isValidString(title) ? title : "New Task";
     this.description = null;
     this.status = statusInstance ?? null;
@@ -344,7 +346,6 @@ export class Task {
   }
   setTags(val) {
     this.tags?.setTags(val);
-    console.log(this.tags);
   }
   clearTags() {
     this.tags?.clearTags();
@@ -360,20 +361,21 @@ export class Task {
   }
   toObj() {
     return {
+      id: this.id,
       title: this.title,
       description: this.description ? this.description : null,
       status: this.status
         ? {
-            name: this.status.getStatus()?.name,
+            name: this.status?.getStatus()?.name,
             group: {
-              name: this.status.getGroup()?.name,
-              icon: this.status.getGroup()?.icon,
+              name: this.status?.getGroup()?.name,
+              icon: this.status?.getGroup()?.icon,
             },
-            color: this.status.getStatus()?.color,
+            color: this.status?.getStatus()?.color,
           }
         : null,
-      tags: this.tags ? this.tags.getTags() : null,
-      assignee: this.assignee ? this.assignee.getAssignee() : null,
+      tags: this.tags ? this.tags?.getTags() : null,
+      assignee: this.assignee ? this.assignee?.getAssignee() : null,
     };
   }
 }
